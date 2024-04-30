@@ -1,0 +1,17 @@
+
+}
+java:S1710&"<Remove the 'ApiResponses' wrapper from this annotation group(Å¬†—üÿÿÿÿJ$1658a5a4-0bca-4fbc-91c3-1d38f477f247
+‹
+java:S44884"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(µ›«…ûÿÿÿÿJ$20764ce9-3f7f-4e2f-895b-135bfb199f5f
+‰
+java:S4488;"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(’„ïÒÿÿÿÿÿJ$50a78788-f788-47c5-bee5-dccaf3d87ff4
+„
+java:S4488A"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(½õªäJ$7e5295af-67dd-4628-bea0-01e343f10dcc
+‹
+java:S4488H"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(­åä¹úÿÿÿÿJ$0fc49811-70a5-4d1e-8b0e-ba1d83378b9d
+„
+java:S4488N"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ÎóŒ„J$4f481b40-efa0-4556-865e-8c9375b55405
+‰
+java:S4488T"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(§éÑÿÿÿÿÿJ$c07042a6-5762-42f3-be6d-05071dfd0d79
+f
+java:S1068$"*Remove this unused "logger" private field.(òÖªîJ$ebad8486-f233-4f70-8342-a4d9e13d4f20

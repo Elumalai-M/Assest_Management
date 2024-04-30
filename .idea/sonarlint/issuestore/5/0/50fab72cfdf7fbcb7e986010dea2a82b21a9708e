@@ -1,0 +1,8 @@
+
+´
+java:S1488F"sImmediately return this expression instead of assigning it to the temporary variable "populateFixedAssestResponse".(Ç–˜ûÿÿÿÿJ$cb56f23f-abfe-434d-8999-22e0920d56ee
+˜
+java:S3655F"PCall "findById.isPresent()" or "!findById.isEmpty()" before accessing the value.(Ç–˜ûÿÿÿÿ8€İÆïò1J$a26bee55-8a8f-4aeb-bdb7-27af12e890fa
+€
+java:S1854#"?Remove this useless assignment to local variable "fixedAssest".( •Ì¸üÿÿÿÿJ$13cfd31e-ee27-4132-a337-7fd85de7b014
+k	java:S106$"+Replace this use of System.out by a logger.(ï˜Ş¦şÿÿÿÿJ$a3d9b9de-4209-4c5c-a1aa-9575b5d51233

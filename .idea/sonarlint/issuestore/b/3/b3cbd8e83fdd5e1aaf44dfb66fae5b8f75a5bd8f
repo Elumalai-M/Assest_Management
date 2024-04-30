@@ -1,0 +1,11 @@
+
+„
+java:S1710""<Remove the 'ApiResponses' wrapper from this annotation group(Å¬†—üÿÿÿÿ8¥ßªóò1J$2747b0dc-efed-4e24-947c-53dc9cd5d83a
+’
+java:S44880"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(µ›«…ûÿÿÿÿ8³ßªóò1J$e3116097-3c46-4a38-95c9-be8a8ae6210e
+
+java:S44887"HReplace "@RequestMapping(method = RequestMethod.PUT)" with "@PutMapping"(§éÑÿÿÿÿÿ8µßªóò1J$407817e1-6b9e-490c-91eb-de196e61688d
+‹
+java:S4488>"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(üü÷Ž8¶ßªóò1J$417a8ec0-0632-41b4-84be-64f146470bef
+‹
+java:S4488D"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(çð—ž8×Ø¬óò1J$6fc58a86-f729-4eb2-95a6-d395c26e4b9e

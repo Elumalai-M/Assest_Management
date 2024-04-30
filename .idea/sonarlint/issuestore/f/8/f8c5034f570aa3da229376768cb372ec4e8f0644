@@ -1,0 +1,19 @@
+
+E
+java:S5411:"(Use a primitive boolean expression here.(Šûä8£Ê±Çò1
+†
+java:S1128"ERemove this unused import 'org.springframework.beans.BeansException'.(Æ¢ùìüÿÿÿÿJ$65200adf-0696-4cc7-9176-a7f739e68239
+‡
+java:S1128"KRemove this unused import 'org.springframework.context.ApplicationContext'.(»Ô»¿J$c62d1dd8-7aa0-40f2-a401-b8e062198fc9
+Œ
+java:S1128"PRemove this unused import 'org.springframework.context.ApplicationContextAware'.(’ïı·J$2078868f-4c67-4428-b99b-65d97acfb4af
+–
+java:S1128	"URemove this unused import 'org.springframework.security.access.prepost.PreAuthorize'.(ˆ†×ùÿÿÿÿJ$c2f5eda5-8ad5-4bd5-95bf-fc32ad013048
+…
+java:S1128"IRemove this unused import 'org.springframework.web.method.HandlerMethod'.(Å€îÙJ$1f7633f5-70c3-4187-a68a-e472ba8ecf5e
+“
+java:S1128"RRemove this unused import 'org.springframework.web.servlet.HandlerExecutionChain'.(•†²ØüÿÿÿÿJ$02ac5df4-7b4d-4c64-a8c9-192fcb866644
+Œ
+java:S1128"KRemove this unused import 'org.springframework.web.servlet.HandlerMapping'.(¸Â×†ùÿÿÿÿJ$24505981-c7ae-4d26-b8d0-5816ab289c00
+ª
+java:S1128"oRemove this unused import 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping'.(•ÚÈ8J$c6f28771-3eb4-46cb-ac31-722a9082df25
