@@ -1,13 +1,19 @@
 package com.assestmanagement.model;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "organization")
 public class OrganistationModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,41 +22,11 @@ public class OrganistationModel {
 	private String name;
 	private String emailId;
 	private String location;
-	private Date estimatedDate;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getOrganizationCode() {
-		return organizationCode;
-	}
-	public void setOrganizationCode(String organizationCode) {
-		this.organizationCode = organizationCode;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getEmailId() {
-		return emailId;
-	}
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-	public String getLocation() {
-		return location;
-	}
-	public void setLocation(String location) {
-		this.location = location;
-	}
-	public Date getEstimatedDate() {
-		return estimatedDate;
-	}
-	public void setEstimatedDate(Date estimatedDate) {
-		this.estimatedDate = estimatedDate;
-	}
+	private Date establishedDate;
+
+	@OneToMany(mappedBy = "organistation")
+	private List<EmployeeModel> employee;
+
+	@OneToMany(mappedBy = "organistationDetail")
+	private List<AssetModel> assets;
 }

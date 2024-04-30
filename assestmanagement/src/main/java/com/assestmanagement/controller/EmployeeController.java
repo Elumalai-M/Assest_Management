@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,9 +19,7 @@ import com.assestmanagement.constant.AssestManagementConstants;
 import com.assestmanagement.dto.EmployeeData;
 import com.assestmanagement.dto.ErrorResponseDto;
 import com.assestmanagement.dto.ResponseDto;
-import com.assestmanagement.model.FixedAssestDataResponse;
 import com.assestmanagement.service.EmployeeService;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -74,7 +71,6 @@ public class EmployeeController {
     
     @RequestMapping(value="/importEmployeeData", method = RequestMethod.POST)
     public ResponseEntity<String> importEmployee(@RequestParam MultipartFile fileData) {
-    	System.out.println(fileData.getOriginalFilename());
     	String importEmployeeData = employeeService.importEmployeeData(fileData);
         return ResponseEntity.ok(importEmployeeData);
     }
@@ -93,31 +89,3 @@ public class EmployeeController {
    	}
        
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//	EmployeeData createEmployee = employeeService.createUser(employeeData);
-//employeeService.createEmployee(employeeData);
-//return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDto(AssestManagementConstants.STATUS_201, AssestManagementConstants.MESSAGE_201));
-//if (createEmployee != null) {
-//	return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDto(AssestManagementConstants.STATUS_201, AssestManagementConstants.MESSAGE_201));
-//	
-//} else {
-//	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseDto(AssestManagementConstants.STATUS_400, AssestManagementConstants.MESSAGE_400));
-//}

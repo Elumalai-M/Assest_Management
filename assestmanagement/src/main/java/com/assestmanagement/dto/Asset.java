@@ -64,8 +64,6 @@ public class Asset {
         this.brand = brand;
     }
 
-
-
     public double getCost() {
 		return cost;
 	}

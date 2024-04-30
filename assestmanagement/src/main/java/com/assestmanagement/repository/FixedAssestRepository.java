@@ -2,17 +2,16 @@ package com.assestmanagement.repository;
 
 import java.util.Optional;
 
+import com.assestmanagement.model.AssetModel;
+import com.assestmanagement.model.FixedAssetModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.assestmanagement.model.AssestModel;
-import com.assestmanagement.model.FixedAssest;
-import com.assestmanagement.model.FixedAssestDataResponse;
 
 @Repository
-public interface FixedAssestRepository extends JpaRepository<FixedAssest,Long>{
+public interface FixedAssestRepository extends JpaRepository<FixedAssetModel,Long>{
 
-	Optional<FixedAssest> findByAssest(Optional<AssestModel> assestModel);
+	Optional<FixedAssetModel> findByAsset(Optional<AssetModel> assestModel);
 
 
 }

@@ -1,6 +1,5 @@
-package com.assestmanagement.model;
+package com.assestmanagement.dto;
 
-import com.assestmanagement.dto.Asset;
 
 public class FixedAssestDataResponse {
 	 private Long id;

@@ -1,17 +1,15 @@
 package com.assestmanagement.repository;
 
-import java.util.Optional;
-
+import com.assestmanagement.model.AssetModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.assestmanagement.model.AssestModel;
-import com.assestmanagement.model.EmployeeModel;
-import com.assestmanagement.model.FixedAssest;
+import java.util.Optional;
+
 
 @Repository
-public interface AssestRepository extends JpaRepository<AssestModel,Long> {
+public interface AssestRepository extends JpaRepository<AssetModel,Long> {
 
-	Optional<AssestModel> findByAssetId(Long assetId);
+	Optional<AssetModel> findByAssetId(Long assetId);
 
 }

@@ -2,9 +2,6 @@ package com.assestmanagement.configuration;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
@@ -21,21 +18,15 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.assestmanagement.model.EmployeeModel;
-import com.assestmanagement.model.TestModel;
 import com.assestmanagement.repository.EmployeeRepository;
-import com.assestmanagement.repository.TestRepository;
 
 @Configuration
 public class SpringBatchConfig {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
-	
-	@Autowired
-	private TestRepository testRepository;
 	
 	   public FlatFileItemReader<EmployeeModel> itemReader(){
 	        FlatFileItemReader<EmployeeModel> itemReader = new FlatFileItemReader<>();
