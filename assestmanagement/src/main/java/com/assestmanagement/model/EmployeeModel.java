@@ -45,4 +45,7 @@ public class EmployeeModel extends BaseModel{
 	@OneToMany(mappedBy = "employee")
 	private List<AssetModel> assets;
 
+	@OneToMany(mappedBy = "employee")
+	private List<TicketModel> tickets;
+
 }

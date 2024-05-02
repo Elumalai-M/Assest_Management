@@ -95,8 +95,9 @@ public class AssestServiceImpl implements AssestService {
 
 	@Override
 	public void updateAssest(AssestData assestData) {
-		Optional<AssetModel> assestModel = assestRepository.findByAssetId(Long.parseLong(assestData.getAssest().getAssetId()));
+		Optional<AssetModel> assestModel = assestRepository.findByAssetId(assestData.getAssest().getAssetId());
 		Optional<FixedAssetModel> fixedAssest = fixedAssestRepository.findByAsset(assestModel);
+
 		if(assestModel.isPresent() && fixedAssest.isPresent()) {
 		convertAssestDataToModel(assestData,assestModel.get(),fixedAssest.get());
 		 assestRepository.save(assestModel.get());

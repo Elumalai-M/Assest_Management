@@ -36,4 +36,30 @@ public class ITAssetModel extends BaseModel{
 
     @OneToOne(mappedBy = "itAsset")
     private AssetModel asset;
+
+    @Override
+    public String toString() {
+        return "ITAssetModel{" +
+                "id=" + id +
+                ", hostName='" + hostName + '\'' +
+                ", totalPort='" + totalPort + '\'' +
+                ", managementPortInfo='" + managementPortInfo + '\'' +
+                ", defaultGateWay='" + defaultGateWay + '\'' +
+                ", firewallType='" + firewallType + '\'' +
+                ", firewallIpAddress='" + firewallIpAddress + '\'' +
+                ", macAddress='" + macAddress + '\'' +
+                ", serviceTag='" + serviceTag + '\'' +
+                ", os='" + os + '\'' +
+                ", processor='" + processor + '\'' +
+                ", raidCard='" + raidCard + '\'' +
+                ", harddisk='" + harddisk + '\'' +
+                ", networkCard='" + networkCard + '\'' +
+                ", smps='" + smps + '\'' +
+                ", vmtype='" + vmtype + '\'' +
+                ", diskDetails='" + diskDetails + '\'' +
+                ", graphicsCard='" + graphicsCard + '\'' +
+                ", isPrinterLinked=" + isPrinterLinked +
+                ", active=" + active +
+                '}';
+    }
 }

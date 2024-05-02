@@ -41,6 +41,36 @@ public class FixedAssetModel {
 
     @OneToOne(mappedBy = "fixedAsset")
     private AssetModel asset;
-
+    @Override
+    public String toString() {
+        return "FixedAssetModel{" +
+                "id=" + id +
+                ", color='" + color + '\'' +
+                ", graphicsCard='" + graphicsCard + '\'' +
+                ", ram='" + ram + '\'' +
+                ", rom='" + rom + '\'' +
+                ", processor='" + processor + '\'' +
+                ", material='" + material + '\'' +
+                ", os='" + os + '\'' +
+                ", osVersion='" + osVersion + '\'' +
+                ", battery='" + battery + '\'' +
+                ", chargerType='" + chargerType + '\'' +
+                ", wireless=" + wireless +
+                ", weight=" + weight +
+                ", dimension='" + dimension + '\'' +
+                ", ipAddress='" + ipAddress + '\'' +
+                ", connectorType='" + connectorType + '\'' +
+                ", bluetoothVersion='" + bluetoothVersion + '\'' +
+                ", chargingTime=" + chargingTime +
+                ", capacity=" + capacity +
+                ", size='" + size + '\'' +
+                ", watts=" + watts +
+                ", volt='" + volt + '\'' +
+                ", length=" + length +
+                ", simNumber='" + simNumber + '\'' +
+                ", imeiNumber='" + imeiNumber + '\'' +
+                ", generation='" + generation + '\'' +
+                '}';
+    }
 
 }

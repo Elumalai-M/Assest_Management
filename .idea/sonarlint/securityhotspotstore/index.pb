@@ -85,7 +85,9 @@ Rassestmanagement/src/main/java/com/assestmanagement/repository/RoleRepository.j
 Nassestmanagement/src/main/java/com/assestmanagement/model/FixedAssetModel.java,9\0\9019feac7acc9c6ad5bf08291bbebf6c5fd18587
 ~
 Nassestmanagement/src/main/java/com/assestmanagement/service/AssestService.java,e\7\e74b823e3bbddcfd634176e6ad99e9ba04b18d49
-€
-Passestmanagement/src/main/java/com/assestmanagement/model/AssetHistoryModel.java,2\c\2cd634a510aec12cee27fca5f605466d6c99e1c9
-v
-Fassestmanagement/src/main/java/com/assestmanagement/java/Employee.java,d\b\db0cd902cae540820365aaf5d2fb71effc56a4b7
+‰
+Yassestmanagement/src/test/java/com/assestmanagement/AssestmanagementApplicationTests.java,e\2\e292056ced3ad9b771dc2bc66145d4e0bc825544
+z
+Jassestmanagement/src/main/java/com/assestmanagement/model/TicketModel.java,9\5\9525d59ddab3fd525e0164013b51c14bd926f97d
+u
+Eassestmanagement/src/main/java/com/assestmanagement/model/Status.java,4\0\40bc6c8dd6b892b9aebc542bee69921a494b735a
