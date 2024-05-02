@@ -9,11 +9,11 @@
 		<version>3.2.4</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.assestmanagement</groupId>
-	<artifactId>assestmanagement</artifactId>
+	<groupId>com.assetmanagement</groupId>
+	<artifactId>assetmanagement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>assestmanagement</name>
-	<description>IT Assest management Application</description>
+	<name>assetmanagement</name>
+	<description>IT Asset management Application</description>
 	<properties>
 		<java.version>17</java.version>
 		<maven.compiler.source>19</maven.compiler.source>
