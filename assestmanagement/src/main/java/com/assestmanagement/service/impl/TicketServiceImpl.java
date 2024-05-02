@@ -48,7 +48,7 @@ public class TicketServiceImpl implements TicketService {
 
             return ticketMapper.toTicketDto(ticketModel);
         }).orElseGet(() -> {
-            log.warn("No ticket found with ID: {}", id);
+            log.warn("No ticket found with ticketID: {}", id);
             return null;
         });
     }
