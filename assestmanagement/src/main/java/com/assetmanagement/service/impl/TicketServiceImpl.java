@@ -1,6 +1,7 @@
 package com.assetmanagement.service.impl;
 
 import com.assetmanagement.dto.TicketData;
+import com.assetmanagement.exception.TicketNotFoundException;
 import com.assetmanagement.mapper.TicketMapper;
 import com.assetmanagement.model.TicketModel;
 import com.assetmanagement.repository.TicketRepository;
@@ -31,25 +32,9 @@ public class TicketServiceImpl implements TicketService {
     public TicketData getTicket(Long id) {
         Optional<TicketModel> optionalTicket = ticketRepository.findById(id);
 
-        return optionalTicket.map(ticketModel -> {
-            log.info("Ticket found with ID: {}", id);
-
-            if (ticketModel.getAsset() != null) {
-                log.info("Asset Details: {}", ticketModel.getAsset());
-            } else {
-                log.info("No Asset linked with Ticket ID: {}", id);
-            }
-
-            if (ticketModel.getAsset() != null && ticketModel.getAsset().getFixedAsset() != null) {
-                log.info("Fixed Asset Details: {}", ticketModel.getAsset().getFixedAsset());
-            } else {
-                log.info("No Fixed Asset linked with Ticket ID: {}", id);
-            }
-
-            return ticketMapper.toTicketDto(ticketModel);
-        }).orElseGet(() -> {
+        return optionalTicket.map(ticketModel -> ticketMapper.toTicketDto(ticketModel)).orElseThrow(() -> {
             log.warn("No ticket found with ticketID: {}", id);
-            return null;
+            return new TicketNotFoundException("NO TICKET FOUND with ID: " + id);
         });
     }
 }
