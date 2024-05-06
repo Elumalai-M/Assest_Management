@@ -31,4 +31,7 @@ public class TicketModel {
     @Lob
     @Column(name = "fileData", columnDefinition="LONGBLOB")
     private byte[] fileData;
+
+    @Enumerated(EnumType.STRING)
+    private TicketStatus ticketStatus = TicketStatus.OPEN;
 }

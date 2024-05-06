@@ -6,6 +6,7 @@ import com.assetmanagement.mapper.TicketMapper;
 import com.assetmanagement.model.AssetModel;
 import com.assetmanagement.model.EmployeeModel;
 import com.assetmanagement.model.TicketModel;
+import com.assetmanagement.model.TicketStatus;
 import com.assetmanagement.repository.AssetRepository;
 import com.assetmanagement.repository.EmployeeRepository;
 import com.assetmanagement.repository.TicketRepository;
@@ -48,12 +49,9 @@ public class TicketServiceImpl implements TicketService {
         AssetModel asset = assetRepository.findByAssetName(ticketData.getAssetName())
                 .orElseThrow(() -> new RuntimeException("Asset not found with name: " + ticketData.getAssetName()));
 
-        if (ticketRepository.existsByEmployeeAndAsset(employee, asset)) {
-            throw new IllegalStateException("A ticket for the specified asset by this employee already exists.");
-        }
-
-        if (!asset.getEmployee().equals(employee)) {
-            throw new IllegalStateException("This employee is not authorized to create a ticket for this asset.");
+        Optional<TicketModel> existingOpenTicket = ticketRepository.findByEmployeeAndAssetAndTicketStatus(employee, asset, TicketStatus.OPEN);
+        if (existingOpenTicket.isPresent()) {
+            throw new IllegalStateException("An open ticket for this asset by this employee already exists.");
         }
 
         TicketModel ticketModel = ticketMapper.toTicketModel(ticketData);
