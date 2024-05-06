@@ -29,4 +29,6 @@ public interface AssetRepository extends JpaRepository<AssetModel,Long> {
 	           "FROM AssetModel a")
 	AssetSummary getAssetSummary();
 
+	 Optional<AssetModel> findByAssetName(String assetName);
+
 }

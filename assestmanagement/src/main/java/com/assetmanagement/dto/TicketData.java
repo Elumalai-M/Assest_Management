@@ -8,7 +8,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TicketData {
+
     private String ticketNo;
-    private EmployeeData employee;
-    private AssetData asset;
+    private String employeeId;
+    private String assetName;
+    private String description;
+    private byte[]  fileData;
 }
+

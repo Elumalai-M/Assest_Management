@@ -19,6 +19,7 @@ public class EmployeeModel extends BaseModel{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	@Column(unique = true)
 	private String employeeId;
 	private String firstName;
 	private String lastName;	

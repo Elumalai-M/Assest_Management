@@ -15,7 +15,7 @@ public class AssetModel {
         @Id
     	@GeneratedValue(strategy = GenerationType.AUTO)
 	    private Long assetId;
-
+		@Column(unique = true)
 	    private String assetName;
 	    private String managedBy;
 	    private String remark;

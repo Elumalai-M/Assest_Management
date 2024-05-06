@@ -14,6 +14,8 @@ public class TicketModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(unique = true)
     private String ticketNo;
 
     @ManyToOne
@@ -23,4 +25,10 @@ public class TicketModel {
     @ManyToOne
     @JoinColumn(name = "asset_id",referencedColumnName = "assetId")
     private AssetModel asset;
+
+    private String description;
+
+    @Lob
+    @Column(name = "fileData", columnDefinition="LONGBLOB")
+    private byte[] fileData;
 }

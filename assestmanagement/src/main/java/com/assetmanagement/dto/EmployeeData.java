@@ -11,6 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmployeeData {
+	private Integer id;
 	private String employeeId;
 	private String firstName;
 	private String lastName;	
