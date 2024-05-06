@@ -55,14 +55,8 @@ public class TicketServiceImpl implements TicketService {
         if (!asset.getEmployee().equals(employee)) {
             throw new IllegalStateException("This employee is not authorized to create a ticket for this asset.");
         }
-        TicketModel ticketModel = new TicketModel();
 
-        ticketModel.setTicketNo(ticketData.getTicketNo());
-        ticketModel.setDescription(ticketData.getDescription());
-        ticketModel.setEmployee(employee);
-        ticketModel.setAsset(asset);
-        ticketModel.setFileData(ticketData.getFileData());
-
+        TicketModel ticketModel = ticketMapper.toTicketModel(ticketData);
         TicketModel savedTicket = ticketRepository.save(ticketModel);
 
         return ticketMapper.toTicketDto(savedTicket);
