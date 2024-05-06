@@ -35,6 +35,15 @@ public class TicketController {
         }
     }
 
+    @PostMapping("/complaint/close")
+    public ResponseEntity<String> closeTicket(@RequestParam String ticketNo) {
+        try {
+            ticketService.closeTicket(ticketNo);
+            return ResponseEntity.ok("Ticket with number " + ticketNo + " has been closed.");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Failed to close ticket: " + e.getMessage());
+        }
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<TicketData> getTicketById(@PathVariable Long id) {

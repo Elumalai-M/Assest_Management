@@ -75,4 +75,18 @@ public class TicketServiceImpl implements TicketService {
             return new TicketNotFoundException("NO TICKET FOUND with ID: " + id);
         });
     }
+
+    @Override
+    public void closeTicket(String ticketNo) throws Exception {
+
+        TicketModel ticket = ticketRepository.findByTicketNo(ticketNo)
+                .orElseThrow(() -> new Exception("Ticket with number " + ticketNo + " not found"));
+
+        if (ticket.getTicketStatus() == TicketStatus.CLOSED) {
+            throw new Exception("Ticket is already closed.");
+        }
+
+        ticket.setTicketStatus(TicketStatus.CLOSED);
+        ticketRepository.save(ticket);
+    }
 }

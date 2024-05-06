@@ -9,5 +9,5 @@ public interface TicketService {
 
     TicketData createTicket(TicketData ticketData) throws IOException;
     TicketData getTicket(Long id);
-
+    void closeTicket(String ticketNo) throws Exception;
 }

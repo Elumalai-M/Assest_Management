@@ -13,6 +13,6 @@ import java.util.Optional;
 public interface TicketRepository extends JpaRepository<TicketModel,Long> {
 
     boolean existsByTicketNo(String ticketNo);
-    boolean existsByEmployeeAndAsset(EmployeeModel employee, AssetModel asset);
     Optional<TicketModel> findByEmployeeAndAssetAndTicketStatus(EmployeeModel employee, AssetModel asset, TicketStatus status);
+    Optional<TicketModel> findByTicketNo(String status);
 }
