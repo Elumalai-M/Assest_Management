@@ -58,8 +58,8 @@ public class AssetController {
 			}
 	   
 	    @RequestMapping(value = "/getAssetList", method = RequestMethod.GET)
-		public ResponseEntity<List<FixedAssetDataResponse>> getAssetList() {
-	    	List<FixedAssetDataResponse> fetchAssetList = assetService.fetchAssetList();
+		public ResponseEntity<List<AssetData>> getAssetList() {
+	    	List<AssetData> fetchAssetList = assetService.fetchAssetList();
 	    	return ResponseEntity.ok().body(fetchAssetList);
 		}
 	    

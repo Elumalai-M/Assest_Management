@@ -4,14 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.assetmanagement.model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.assetmanagement.dto.AssetData;
 import com.assetmanagement.dto.Asset;
+import com.assetmanagement.dto.AssetData;
 import com.assetmanagement.dto.FixedAssetDataResponse;
+import com.assetmanagement.mapper.AssestMapper;
+import com.assetmanagement.model.AssetModel;
+import com.assetmanagement.model.AssetType;
+import com.assetmanagement.model.Category;
+import com.assetmanagement.model.FixedAssetModel;
+import com.assetmanagement.model.OperationalStatus;
+import com.assetmanagement.model.Status;
 import com.assetmanagement.repository.AssetRepository;
 import com.assetmanagement.repository.FixedAssetRepository;
 import com.assetmanagement.service.AssetService;
@@ -20,19 +26,23 @@ import com.assetmanagement.service.AssetService;
 public class AssetServiceImpl implements AssetService {
 
 	@Autowired
-	private AssetRepository assetRepository;
+     AssetRepository assetRepository;
 
 	@Autowired
-	private FixedAssetRepository fixedAssetRepository;
+	FixedAssetRepository fixedAssetRepository;
+	
+	@Autowired
+	AssestMapper assestMapper;
 
 	@Override
 	public void createAsset(AssetData assetData) {
 		AssetModel assetModel = new AssetModel();
 		FixedAssetModel fixedAsset = new FixedAssetModel();
 		convertAssetDataToModel(assetData,assetModel,fixedAsset);
-		assetModel = assetRepository.save(assetModel);
-		fixedAsset.setAsset(assetModel);
 		fixedAsset = fixedAssetRepository.save(fixedAsset);
+		assetModel.setFixedAsset(fixedAsset);
+		assetModel = assetRepository.save(assetModel);
+
 		System.out.println("Data saved successfully: " + assetData);
 	}
 
@@ -54,14 +64,20 @@ public class AssetServiceImpl implements AssetService {
 	}
 
 	@Override
-	public List<FixedAssetDataResponse> fetchAssetList() {
-		List<FixedAssetDataResponse> fixedAssetData = new ArrayList<>();
-		List<FixedAssetModel> fixedAsset = fixedAssetRepository.findAll();
-		fixedAsset.stream().forEach(x -> {
-			FixedAssetDataResponse populateFixedAssetResponse = populateFixedAssetResponse(x);
-			fixedAssetData.add(populateFixedAssetResponse);
+	public List<AssetData> fetchAssetList() {
+//		List<FixedAssetDataResponse> fixedAssetData = new ArrayList<>();
+//		List<FixedAssetModel> fixedAsset = fixedAssetRepository.findAll();
+//		fixedAsset.stream().forEach(x -> {
+//			FixedAssetDataResponse populateFixedAssetResponse = populateFixedAssetResponse(x);
+//			fixedAssetData.add(populateFixedAssetResponse);
+//		});
+		List<AssetData> assetDatas = new ArrayList<>();
+		List<AssetModel> assetModel = assetRepository.findAll();
+		assetModel.stream().forEach( x-> {
+			AssetData populateAssetData = assestMapper.populateAssetModelToData(x);
+			assetDatas.add(populateAssetData);
 		});
-		return fixedAssetData;
+		return assetDatas;
 	}
 
 	@Override
