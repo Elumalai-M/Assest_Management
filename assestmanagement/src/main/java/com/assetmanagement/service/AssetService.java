@@ -9,7 +9,7 @@ public interface AssetService {
 
 	void createAsset(AssetData assetData);
 
-	List<FixedAssetDataResponse> fetchAssetList();
+	List<AssetData> fetchAssetList();
 
 	FixedAssetDataResponse getAssetById(long assetName);
 
