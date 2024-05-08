@@ -81,10 +81,10 @@ public class AssetServiceImpl implements AssetService {
 	}
 
 	@Override
-	public FixedAssetDataResponse getAssetById(long assetName) {
-		Optional<FixedAssetModel> findById = fixedAssetRepository.findById(assetName);
-		FixedAssetDataResponse populateFixedAssetResponse = populateFixedAssetResponse(findById.get());
-		return populateFixedAssetResponse;
+	public AssetData getAssetById(long assetName) {
+		Optional<AssetModel> assestModel = assetRepository.findByAssetId(assetName);
+		AssetData populateAssetModelToData = assestMapper.populateAssetModelToData(assestModel.get());
+		return populateAssetModelToData;
 	}
 	
 	public FixedAssetDataResponse populateFixedAssetResponse(FixedAssetModel fixedAsset){
@@ -112,13 +112,9 @@ public class AssetServiceImpl implements AssetService {
 	@Override
 	public void updateAsset(AssetData assetData) {
 		Optional<AssetModel> assetModel = assetRepository.findByAssetId(assetData.getAsset().getAssetId());
-		Optional<FixedAssetModel> fixedAsset = fixedAssetRepository.findByAsset(assetModel);
-
-		if(assetModel.isPresent() && fixedAsset.isPresent()) {
-		convertAssetDataToModel(assetData,assetModel.get(),fixedAsset.get());
-		 assetRepository.save(assetModel.get());
-		 fixedAsset.get().setAsset(assetModel.get());
-		fixedAssetRepository.save(fixedAsset.get());
+		if(assetModel.isPresent()) {
+		AssetModel populateAssetDataToModel = assestMapper.populateAssetDataToModel(assetData,assetModel.get());
+		 assetRepository.save(populateAssetDataToModel);
 	}
 	}
 }

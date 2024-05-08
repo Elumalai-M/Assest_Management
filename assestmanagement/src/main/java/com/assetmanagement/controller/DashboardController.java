@@ -13,12 +13,12 @@ import com.assetmanagement.service.DashboardService;
 @RequestMapping("/dashboard")
 public class DashboardController {
 
-		@Autowired
-		DashboardService dashboardService;
-	   
-	    @RequestMapping(value = "/summary", method = RequestMethod.GET)
-		public ResponseEntity<AssetSummary> getAssetSummary() {
-	    	AssetSummary assetSummary = dashboardService.getAssetSummary();
-	    	return ResponseEntity.ok().body(assetSummary);
-		}
+	@Autowired
+	DashboardService dashboardService;
+
+	@RequestMapping(value = "/summary", method = RequestMethod.GET)
+	public ResponseEntity<AssetSummary> getAssetSummary() {
+		AssetSummary assetSummary = dashboardService.getAssetSummary();
+		return ResponseEntity.ok().body(assetSummary);
+	}
 }

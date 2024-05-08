@@ -6,10 +6,12 @@ import org.springframework.stereotype.Component;
 import com.assetmanagement.dto.Asset;
 import com.assetmanagement.dto.AssetData;
 import com.assetmanagement.dto.FixedAsset;
-import com.assetmanagement.dto.FixedAssetData;
 import com.assetmanagement.dto.ITAssetData;
 import com.assetmanagement.model.AssetModel;
-import com.assetmanagement.model.FixedAssetModel;
+import com.assetmanagement.model.AssetType;
+import com.assetmanagement.model.Category;
+import com.assetmanagement.model.OperationalStatus;
+import com.assetmanagement.model.Status;
 
 @Component
 public class AssestMapper {
@@ -47,5 +49,28 @@ public class AssestMapper {
 			assetData.setCategory(assetModel.getCategory().name());
 		}
 
+	}
+
+	public AssetModel populateAssetDataToModel(AssetData assetData,AssetModel assetModel) {
+		BeanUtils.copyProperties(assetData.getAsset(), assetModel);
+		if (assetData.getAsset().getStatus() != null) {
+			assetModel.setStatus(Status.valueOf(assetData.getAsset().getStatus().toUpperCase()));
+        }
+        if (assetData.getAsset().getOperationalStatus() != null) {
+        	assetModel.setOperationalStatus(OperationalStatus.valueOf(assetData.getAsset().getOperationalStatus().toUpperCase()));
+        }
+        if (assetData.getAsset().getAssetType() != null) {
+        	assetModel.setAssetType(AssetType.valueOf(assetData.getAsset().getAssetType().toUpperCase()));
+        }
+        if (assetData.getAsset().getCategory() != null) {
+        	assetModel.setCategory(Category.valueOf(assetData.getAsset().getCategory().toUpperCase()));
+        }
+        if(assetData.getItAsset()!=null) {
+    	  BeanUtils.copyProperties(assetData.getItAsset(), assetModel.getItAsset());
+        }else {
+		BeanUtils.copyProperties(assetData.getFixedasset(), assetModel.getFixedAsset());
+        }
+		return assetModel;
+		
 	}
 }

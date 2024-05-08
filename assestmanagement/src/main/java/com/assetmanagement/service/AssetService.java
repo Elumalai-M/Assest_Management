@@ -3,7 +3,6 @@ package com.assetmanagement.service;
 import java.util.List;
 
 import com.assetmanagement.dto.AssetData;
-import com.assetmanagement.dto.FixedAssetDataResponse;
 
 public interface AssetService {
 
@@ -11,7 +10,7 @@ public interface AssetService {
 
 	List<AssetData> fetchAssetList();
 
-	FixedAssetDataResponse getAssetById(long assetName);
+	AssetData getAssetById(long assetName);
 
 	void updateAsset(AssetData assetData);
 

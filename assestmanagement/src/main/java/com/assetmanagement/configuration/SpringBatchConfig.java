@@ -27,72 +27,66 @@ public class SpringBatchConfig {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
-	
-	   public FlatFileItemReader<EmployeeModel> itemReader(){
-	        FlatFileItemReader<EmployeeModel> itemReader = new FlatFileItemReader<>();
-	        itemReader.setResource(new FileSystemResource("target/classes/sample.csv"));
-	        itemReader.setName("csv-reader");
-	        itemReader.setLinesToSkip(1);
-	        itemReader.setLineMapper(lineMapper());
-	        return itemReader;
-	    }
 
-	    private LineMapper<EmployeeModel> lineMapper() {
-	        DefaultLineMapper<EmployeeModel> lineMapper = new DefaultLineMapper<>();
+	public FlatFileItemReader<EmployeeModel> itemReader() {
+		FlatFileItemReader<EmployeeModel> itemReader = new FlatFileItemReader<>();
+		itemReader.setResource(new FileSystemResource("target/classes/sample.csv"));
+		itemReader.setName("csv-reader");
+		itemReader.setLinesToSkip(1);
+		itemReader.setLineMapper(lineMapper());
+		return itemReader;
+	}
 
-	        DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
-	        tokenizer.setDelimiter(",");
-	       // tokenizer.setNames("id","name");
-	        tokenizer.setNames("employeeId","firstName","lastName","emailId","password","dateOfJoining","contactNumber","dateOfBirth","designation");
-	        tokenizer.setStrict(false);
+	private LineMapper<EmployeeModel> lineMapper() {
+		DefaultLineMapper<EmployeeModel> lineMapper = new DefaultLineMapper<>();
 
-	        BeanWrapperFieldSetMapper mapper = new BeanWrapperFieldSetMapper<>();
-	        mapper.setTargetType(EmployeeModel.class);
+		DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
+		tokenizer.setDelimiter(",");
+		// tokenizer.setNames("id","name");
+		tokenizer.setNames("employeeId", "firstName", "lastName", "emailId", "password", "dateOfJoining",
+				"contactNumber", "dateOfBirth", "designation");
+		tokenizer.setStrict(false);
 
-	        lineMapper.setFieldSetMapper(mapper);
-	        lineMapper.setLineTokenizer(tokenizer);
-	        return lineMapper;
-	    }
-	
+		BeanWrapperFieldSetMapper mapper = new BeanWrapperFieldSetMapper<>();
+		mapper.setTargetType(EmployeeModel.class);
+
+		lineMapper.setFieldSetMapper(mapper);
+		lineMapper.setLineTokenizer(tokenizer);
+		return lineMapper;
+	}
 
 	@Bean
 	public EmployeeProcessor processor() {
 		return new EmployeeProcessor();
 	}
-	    
+
 //		@Bean
 //		public TestProcessor processor() {
 //			return new TestProcessor();
 //		}
 
-    @Bean
-   public RepositoryItemWriter<EmployeeModel> itemWriter(){
-        RepositoryItemWriter<EmployeeModel> writer = new RepositoryItemWriter<>();
-        writer.setRepository(employeeRepository);
-        writer.setMethodName("save");
-        return writer;
-   }
-    
 	@Bean
-    public Step step(JobRepository repository, PlatformTransactionManager transactionManager){
-        return new StepBuilder("csv-step",repository)
-                .<EmployeeModel,EmployeeModel>chunk(10,transactionManager)
-                .reader(itemReader())
-                .processor(processor())
-                .writer(itemWriter())
-                .taskExecutor(taskExecutor())
-                .build();
-   }
+	public RepositoryItemWriter<EmployeeModel> itemWriter() {
+		RepositoryItemWriter<EmployeeModel> writer = new RepositoryItemWriter<>();
+		writer.setRepository(employeeRepository);
+		writer.setMethodName("save");
+		return writer;
+	}
 
-	@Bean(name="csvJob")
-    public Job job(JobRepository jobRepository, PlatformTransactionManager transactionManager){
-        return new JobBuilder("csv-job",jobRepository)
-	                .flow(step(jobRepository,transactionManager)).end().build();	
-    }
+	@Bean
+	public Step step(JobRepository repository, PlatformTransactionManager transactionManager) {
+		return new StepBuilder("csv-step", repository).<EmployeeModel, EmployeeModel>chunk(10, transactionManager)
+				.reader(itemReader()).processor(processor()).writer(itemWriter()).taskExecutor(taskExecutor()).build();
+	}
 
-    private TaskExecutor taskExecutor() {
-        SimpleAsyncTaskExecutor asyncTaskExecutor = new SimpleAsyncTaskExecutor();
-        asyncTaskExecutor.setConcurrencyLimit(10);
-        return asyncTaskExecutor;
-    }
+	@Bean(name = "csvJob")
+	public Job job(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+		return new JobBuilder("csv-job", jobRepository).flow(step(jobRepository, transactionManager)).end().build();
+	}
+
+	private TaskExecutor taskExecutor() {
+		SimpleAsyncTaskExecutor asyncTaskExecutor = new SimpleAsyncTaskExecutor();
+		asyncTaskExecutor.setConcurrencyLimit(10);
+		return asyncTaskExecutor;
+	}
 }

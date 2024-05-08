@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/v1/ticket")
 public class TicketController {
 
-    @Autowired
-    public TicketService ticketService;
+	@Autowired
+	public TicketService ticketService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<TicketData> getTicketById(@PathVariable Long id) {
-        TicketData ticketData = ticketService.getTicket(id);
-        if (ticketData != null) {
-            return new ResponseEntity<>(ticketData, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+	@GetMapping("/{id}")
+	public ResponseEntity<TicketData> getTicketById(@PathVariable Long id) {
+		TicketData ticketData = ticketService.getTicket(id);
+		if (ticketData != null) {
+			return new ResponseEntity<>(ticketData, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 
 }

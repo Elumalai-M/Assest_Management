@@ -5,9 +5,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -20,6 +18,7 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -31,7 +30,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.assetmanagement.controller.EmployeeController;
 import com.assetmanagement.dto.EmployeeData;
 import com.assetmanagement.dto.LoginRequestData;
 import com.assetmanagement.dto.LoginResponse;
@@ -42,7 +40,6 @@ import com.assetmanagement.repository.EmployeeRepository;
 import com.assetmanagement.repository.RoleRepository;
 import com.assetmanagement.service.EmployeeService;
 import com.assetmanagement.utils.JwtUtil;
-import org.springframework.core.io.Resource;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -97,7 +94,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public void fetchByEmployeeId(String id) {
-		Optional<EmployeeModel> findById = employeeRepository.findById(null);
+		//Optional<EmployeeModel> findById = employeeRepository.findById(null);
 	}
 
 	@Override
@@ -124,7 +121,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		try {
 			Authentication authenticate = authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(employeeData.getEmailId(), employeeData.getPassword()));
-			// authenticate.getPrincipal();
 			final UserDetails employeeDetails = employeeDetailsServiceImpl
 					.loadUserByUsername(employeeData.getEmailId());
 			final String jwt = jwtUtil.generateToken(employeeDetails.getUsername(), employeeDetails.getAuthorities());
