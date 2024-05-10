@@ -24,8 +24,10 @@ public class EmployeeModel extends BaseModel{
 	private String lastName;	
 	private String emailId;
 	private String password;
+	@Temporal(TemporalType.DATE)
 	private Date dateOfJoining;
 	private String contactNumber;
+	@Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
 	private String designation;
 	private boolean isDisabled;
@@ -41,9 +43,10 @@ public class EmployeeModel extends BaseModel{
 	@ManyToOne
 	@JoinColumn(name = "organistationId",referencedColumnName = "id")
 	private OrganistationModel organistation;
+	
+    @OneToMany(mappedBy="employee")
+    private Set<AssetHistoryModel> assestHistory;
 
-	@OneToMany(mappedBy = "employee")
-	private List<AssetModel> assets;
 
 	@OneToMany(mappedBy = "employee")
 	private List<TicketModel> tickets;

@@ -28,8 +28,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.assetmanagement.dto.EmployeeData;
 import com.assetmanagement.dto.LoginRequestData;
 import com.assetmanagement.dto.LoginResponse;
@@ -41,7 +41,9 @@ import com.assetmanagement.repository.RoleRepository;
 import com.assetmanagement.service.EmployeeService;
 import com.assetmanagement.utils.JwtUtil;
 
+
 @Service
+@Transactional
 public class EmployeeServiceImpl implements EmployeeService {
 
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);

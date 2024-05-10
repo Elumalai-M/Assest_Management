@@ -15,13 +15,11 @@ public class EmployeeData {
 	private String firstName;
 	private String lastName;	
 	private String emailId;
-	@JsonIgnore
 	private String password;
 	private Date dateOfJoining;
 	private String contactNumber;
 	private Date dateOfBirth;
 	private String designation;
-	@JsonIgnore
 	private boolean isDisabled;
 
 	
