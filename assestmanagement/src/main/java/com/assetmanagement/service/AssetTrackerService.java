@@ -1,5 +1,5 @@
 package com.assetmanagement.service;
 
-public class AssetHistroyService {
+public class AssetTrackerService {
 
 }
