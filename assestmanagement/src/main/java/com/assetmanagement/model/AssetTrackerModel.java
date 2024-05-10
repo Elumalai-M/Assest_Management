@@ -18,8 +18,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "assethistroy")
-public class AssetHistoryModel extends BaseModel {
+@Table(name = "assettracker")
+public class AssetTrackerModel extends BaseModel {
 	
 	 @Id
  	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -104,7 +104,7 @@ public class AssetHistoryModel extends BaseModel {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AssetHistoryModel other = (AssetHistoryModel) obj;
+		AssetTrackerModel other = (AssetTrackerModel) obj;
 		return Objects.equals(asset, other.asset) && Objects.equals(assetAssignId, other.assetAssignId)
 				&& Objects.equals(assignDate, other.assignDate) && Objects.equals(employee, other.employee)
 				&& Objects.equals(id, other.id) && Objects.equals(remark, other.remark)

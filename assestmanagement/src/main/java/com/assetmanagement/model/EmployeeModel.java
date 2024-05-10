@@ -45,7 +45,7 @@ public class EmployeeModel extends BaseModel{
 	private OrganistationModel organistation;
 	
     @OneToMany(mappedBy="employee")
-    private Set<AssetHistoryModel> assestHistory;
+    private Set<AssetTrackerModel> assetTracker;
 
 
 	@OneToMany(mappedBy = "employee")

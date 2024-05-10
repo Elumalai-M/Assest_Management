@@ -70,7 +70,7 @@ public class AssetModel {
 	private List<TicketModel> tickets;
 	
 	@OneToMany(mappedBy="asset")
-	private Set<AssetHistoryModel> assestHistory;
+	private Set<AssetTrackerModel> assetTracker;
 	
 	
 
@@ -218,7 +218,7 @@ public class AssetModel {
 				+ operationalStatus + ", assetType=" + assetType + ", category=" + category + ", cost=" + cost
 				+ ", brand=" + brand + ", modelNumber=" + modelNumber + ", organistationDetail=" + organistationDetail
 				+ ", vendor=" + vendor + ", itAsset=" + itAsset + ", fixedAsset=" + fixedAsset + ", tickets=" + tickets
-				+ ", assestHistory=" + assestHistory + "]";
+				+ ", assestTracker=" + assetTracker + "]";
 	}
 
 
