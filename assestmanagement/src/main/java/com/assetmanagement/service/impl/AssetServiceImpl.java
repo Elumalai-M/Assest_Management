@@ -16,10 +16,12 @@ import com.assetmanagement.model.AssetModel;
 import com.assetmanagement.model.AssetType;
 import com.assetmanagement.model.Category;
 import com.assetmanagement.model.FixedAssetModel;
+import com.assetmanagement.model.ITAssetModel;
 import com.assetmanagement.model.OperationalStatus;
 import com.assetmanagement.model.Status;
 import com.assetmanagement.repository.AssetRepository;
 import com.assetmanagement.repository.FixedAssetRepository;
+import com.assetmanagement.repository.ITAssetRepository;
 import com.assetmanagement.service.AssetService;
 
 @Service
@@ -32,35 +34,45 @@ public class AssetServiceImpl implements AssetService {
 	FixedAssetRepository fixedAssetRepository;
 	
 	@Autowired
+	ITAssetRepository itAssetRepository;
+	
+	@Autowired
 	AssestMapper assestMapper;
 
 	@Override
 	public void createAsset(AssetData assetData) {
 		AssetModel assetModel = new AssetModel();
-		FixedAssetModel fixedAsset = new FixedAssetModel();
-		convertAssetDataToModel(assetData,assetModel,fixedAsset);
-		fixedAsset = fixedAssetRepository.save(fixedAsset);
-		assetModel.setFixedAsset(fixedAsset);
+		if(assetData.getItasset()!=null) {
+			ITAssetModel itAsset = new ITAssetModel();
+			convertAssetDataToModel(assetData,assetModel,itAsset);
+			itAssetRepository.save(itAsset);
+			assetModel.setItAsset(itAsset);
+//		}else {
+//		FixedAssetModel fixedAsset = new FixedAssetModel();
+//		convertAssetDataToModel(assetData,assetModel,fixedAsset);
+//		 fixedAssetRepository.save(fixedAsset);
+//			assetModel.setFixedAsset(fixedAsset);
+		}
 		assetModel = assetRepository.save(assetModel);
 
 		System.out.println("Data saved successfully: " + assetData);
 	}
 
-	private void convertAssetDataToModel(AssetData assetData,AssetModel assetModel,FixedAssetModel fixedAsset) {
+	private void convertAssetDataToModel(AssetData assetData,AssetModel assetModel,ITAssetModel itAsset) {
 		BeanUtils.copyProperties(assetData.getAsset(), assetModel);
-		if (assetData.getAsset().getStatus() != null) {
-			assetModel.setStatus(Status.valueOf(assetData.getAsset().getStatus().toUpperCase()));
-        }
-        if (assetData.getAsset().getOperationalStatus() != null) {
-        	assetModel.setOperationalStatus(OperationalStatus.valueOf(assetData.getAsset().getOperationalStatus().toUpperCase()));
-        }
+		
+			assetModel.setStatus(Status.UNASSIGNED);
+        
+       
+        	assetModel.setOperationalStatus(OperationalStatus.WORKING);
+       
         if (assetData.getAsset().getAssetType() != null) {
         	assetModel.setAssetType(AssetType.valueOf(assetData.getAsset().getAssetType().toUpperCase()));
         }
         if (assetData.getAsset().getCategory() != null) {
         	assetModel.setCategory(Category.valueOf(assetData.getAsset().getCategory().toUpperCase()));
         }
-		BeanUtils.copyProperties(assetData.getFixedasset(), fixedAsset);		
+		BeanUtils.copyProperties(assetData.getItasset(), itAsset);		
 	}
 
 	@Override
@@ -81,7 +93,7 @@ public class AssetServiceImpl implements AssetService {
 	}
 
 	@Override
-	public AssetData getAssetById(long assetName) {
+	public AssetData getAssetById(String assetName) {
 		Optional<AssetModel> assestModel = assetRepository.findByAssetId(assetName);
 		AssetData populateAssetModelToData = assestMapper.populateAssetModelToData(assestModel.get());
 		return populateAssetModelToData;
@@ -92,12 +104,12 @@ public class AssetServiceImpl implements AssetService {
 		Asset asset = new Asset();
 		BeanUtils.copyProperties(fixedAsset, fixedAssetDataResponse);
 		BeanUtils.copyProperties(fixedAsset.getAsset(), asset);
-		if (fixedAsset.getAsset().getStatus() != null) {
-			asset.setStatus(fixedAsset.getAsset().getStatus().name());
-        }
-        if (fixedAsset.getAsset().getOperationalStatus() != null) {
-        	asset.setOperationalStatus(fixedAsset.getAsset().getOperationalStatus().name());
-        }
+//		if (fixedAsset.getAsset().getStatus() != null) {
+//			asset.setStatus(fixedAsset.getAsset().getStatus().name());
+//        }
+//        if (fixedAsset.getAsset().getOperationalStatus() != null) {
+//        	asset.setOperationalStatus(fixedAsset.getAsset().getOperationalStatus().name());
+//        }
         if (fixedAsset.getAsset().getAssetType() != null) {
         	asset.setAssetType(fixedAsset.getAsset().getAssetType().name());
         }
@@ -111,7 +123,7 @@ public class AssetServiceImpl implements AssetService {
 
 	@Override
 	public void updateAsset(AssetData assetData) {
-		Optional<AssetModel> assetModel = assetRepository.findByAssetId(assetData.getAsset().getAssetId());
+		Optional<AssetModel> assetModel = null;//assetRepository.findByAssetId(assetData.getAsset().getAssetId());
 		if(assetModel.isPresent()) {
 		AssetModel populateAssetDataToModel = assestMapper.populateAssetDataToModel(assetData,assetModel.get());
 		 assetRepository.save(populateAssetDataToModel);

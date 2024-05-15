@@ -28,7 +28,7 @@ public class AssestMapper {
 			ITAssetData itAssetData = new ITAssetData();
 			BeanUtils.copyProperties(assetModel.getItAsset(), itAssetData);
 			BeanUtils.copyProperties(assetModel, assetData);
-			assetDatas.setItAsset(itAssetData);
+			assetDatas.setItasset(itAssetData);
 		}
 		convertAssetEnum(assetModel, assetData);
 		assetDatas.setAsset(assetData);
@@ -36,12 +36,12 @@ public class AssestMapper {
 	}
 
 	private void convertAssetEnum(AssetModel assetModel, Asset assetData) {
-		if (assetModel.getStatus() != null) {
-			assetData.setStatus(assetModel.getStatus().name());
-		}
-		if (assetModel.getOperationalStatus() != null) {
-			assetData.setOperationalStatus(assetModel.getOperationalStatus().name());
-		}
+//		if (assetModel.getStatus() != null) {
+//			assetData.setStatus(assetModel.getStatus().name());
+//		}
+//		if (assetModel.getOperationalStatus() != null) {
+//			assetData.setOperationalStatus(assetModel.getOperationalStatus().name());
+//		}
 		if (assetModel.getAssetType() != null) {
 			assetData.setAssetType(assetModel.getAssetType().name());
 		}
@@ -53,20 +53,20 @@ public class AssestMapper {
 
 	public AssetModel populateAssetDataToModel(AssetData assetData,AssetModel assetModel) {
 		BeanUtils.copyProperties(assetData.getAsset(), assetModel);
-		if (assetData.getAsset().getStatus() != null) {
-			assetModel.setStatus(Status.valueOf(assetData.getAsset().getStatus().toUpperCase()));
-        }
-        if (assetData.getAsset().getOperationalStatus() != null) {
-        	assetModel.setOperationalStatus(OperationalStatus.valueOf(assetData.getAsset().getOperationalStatus().toUpperCase()));
-        }
+//		if (assetData.getAsset().getStatus() != null) {
+//			assetModel.setStatus(Status.valueOf(assetData.getAsset().getStatus().toUpperCase()));
+//        }
+//        if (assetData.getAsset().getOperationalStatus() != null) {
+//        	assetModel.setOperationalStatus(OperationalStatus.valueOf(assetData.getAsset().getOperationalStatus().toUpperCase()));
+//        }
         if (assetData.getAsset().getAssetType() != null) {
         	assetModel.setAssetType(AssetType.valueOf(assetData.getAsset().getAssetType().toUpperCase()));
         }
         if (assetData.getAsset().getCategory() != null) {
         	assetModel.setCategory(Category.valueOf(assetData.getAsset().getCategory().toUpperCase()));
         }
-        if(assetData.getItAsset()!=null) {
-    	  BeanUtils.copyProperties(assetData.getItAsset(), assetModel.getItAsset());
+        if(assetData.getItasset()!=null) {
+    	  BeanUtils.copyProperties(assetData.getItasset(), assetModel.getItAsset());
         }else {
 		BeanUtils.copyProperties(assetData.getFixedasset(), assetModel.getFixedAsset());
         }

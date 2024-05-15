@@ -13,7 +13,7 @@ import com.assetmanagement.model.AssetModel;
 @Repository
 public interface AssetRepository extends JpaRepository<AssetModel,Long> {
 
-	Optional<AssetModel> findByAssetId(Long assetId);
+	Optional<AssetModel> findByAssetId(String assetId);
 
 	 @Query("SELECT " +
 	           "   SUM(CASE WHEN a.status = 'ASSIGNED' AND a.fixedAsset IS NOT NULL THEN 1 ELSE 0 END) AS assignedFixedAssets, " +

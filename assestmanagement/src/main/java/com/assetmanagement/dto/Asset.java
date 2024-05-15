@@ -9,16 +9,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Asset {
 
-    private Long assetId;
-    private String assetName;
-    private String managedBy;
-    private String modelNumber;
-    private String serialNumber;
-    private String brand;
-    private double cost;
-    private String status;
-    private String operationalStatus;
-    private String assetType;
-    private String category;
+	    private String category;
+	    private String assetCode;
+	    private String assetName;
+	    private String brand;
+	    private String modelNumber;
+	    private String serialNumber;
+	    private String poNumber;
+	    private String dcNumber;
+	    private double cost;
+	    private String remark;
+	    private String assetType;
+	    private String asset;
+	    private String vendor;
+	    private double rent;
+	    private String serviceTag;
+
     
 }
