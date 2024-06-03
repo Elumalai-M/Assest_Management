@@ -123,7 +123,7 @@ public class AssetServiceImpl implements AssetService {
 
 	@Override
 	public void updateAsset(AssetData assetData) {
-		Optional<AssetModel> assetModel = null;//assetRepository.findByAssetId(assetData.getAsset().getAssetId());
+		Optional<AssetModel> assetModel = assetRepository.findByAssetId(assetData.getAsset().getAssetId());
 		if(assetModel.isPresent()) {
 		AssetModel populateAssetDataToModel = assestMapper.populateAssetDataToModel(assetData,assetModel.get());
 		 assetRepository.save(populateAssetDataToModel);

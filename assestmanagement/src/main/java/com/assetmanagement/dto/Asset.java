@@ -1,5 +1,8 @@
 package com.assetmanagement.dto;
 
+import com.assetmanagement.model.OperationalStatus;
+import com.assetmanagement.model.Status;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class Asset {
 
 	    private String category;
-	    private String assetCode;
+	    private String assetId;
 	    private String assetName;
 	    private String brand;
 	    private String modelNumber;
@@ -24,6 +27,8 @@ public class Asset {
 	    private String vendor;
 	    private double rent;
 	    private String serviceTag;
+		private String status;
+		private String operationalStatus;
 
     
 }
