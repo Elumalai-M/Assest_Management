@@ -10,17 +10,17 @@ import lombok.NoArgsConstructor;
 public class ITAssetData {
 	    private String color;
 	    private String chargerType;
-	    private String displaysize;
-	    private String batteryhealth;
-	    private String lanmacaddress;
-	    private String wifimacaddress;
-	    private String dcnumber;
+	    private String displaySize;
+	    private String batteryHealth;
+	    private String lanMacAddress;
+	    private String wifiMacAddress;
+	    private String dcNumber;
 	    private String os;
-	    private String osversion;
+	    private String osVersion;
 	    private String processor;
 	    private String generation;
-	    private String clockspeed;
+	    private String clockSpeed;
 	    private String ram;
-	    private String storagetype;
-	    private String storagecapacity;
+	    private String storageType;
+	    private String storageCapacity;
 }
