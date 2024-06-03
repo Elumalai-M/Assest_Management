@@ -14,52 +14,24 @@ public class ITAssetModel extends BaseModel{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String hostName;
-    private String totalPort;
-    private String managementPortInfo;
-    private String defaultGateWay;
-    private String firewallType;
-    private String firewallIpAddress;
-    private String macAddress;
-    private String serviceTag;
+    private String color;
+    private String chargerType;
+    private String displaySize;
+    private String batteryHealth;
+    private String lanMacAddress;
+    private String wifiMacAddress;
+    private String dcNumber;
     private String os;
+    private String osVersion;
     private String processor;
-    private String raidCard;
-    private String harddisk;
-    private String networkCard;
-    private String smps;
-    private String vmtype;
-    private String diskDetails;
-    private String graphicsCard;
-    private Boolean isPrinterLinked;
-    private Boolean active;
+    private String generation;
+    private String clockSpeed;
+    private String ram;
+    private String storageType;
+    private String storageCapacity;
 
     @OneToOne(mappedBy = "itAsset")
     private AssetModel asset;
 
-    @Override
-    public String toString() {
-        return "ITAssetModel{" +
-                "id=" + id +
-                ", hostName='" + hostName + '\'' +
-                ", totalPort='" + totalPort + '\'' +
-                ", managementPortInfo='" + managementPortInfo + '\'' +
-                ", defaultGateWay='" + defaultGateWay + '\'' +
-                ", firewallType='" + firewallType + '\'' +
-                ", firewallIpAddress='" + firewallIpAddress + '\'' +
-                ", macAddress='" + macAddress + '\'' +
-                ", serviceTag='" + serviceTag + '\'' +
-                ", os='" + os + '\'' +
-                ", processor='" + processor + '\'' +
-                ", raidCard='" + raidCard + '\'' +
-                ", harddisk='" + harddisk + '\'' +
-                ", networkCard='" + networkCard + '\'' +
-                ", smps='" + smps + '\'' +
-                ", vmtype='" + vmtype + '\'' +
-                ", diskDetails='" + diskDetails + '\'' +
-                ", graphicsCard='" + graphicsCard + '\'' +
-                ", isPrinterLinked=" + isPrinterLinked +
-                ", active=" + active +
-                '}';
-    }
+
 }

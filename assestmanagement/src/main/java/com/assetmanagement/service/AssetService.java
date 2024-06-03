@@ -10,7 +10,7 @@ public interface AssetService {
 
 	List<AssetData> fetchAssetList();
 
-	AssetData getAssetById(long assetName);
+	AssetData getAssetById(String assetName);
 
 	void updateAsset(AssetData assetData);
 

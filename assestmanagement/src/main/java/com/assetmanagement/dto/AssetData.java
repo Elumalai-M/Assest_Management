@@ -12,6 +12,6 @@ import lombok.Setter;
 public class AssetData {
 	    private Asset asset;
 	    private FixedAsset fixedasset;
-		private ITAssetData itAsset;
+		private ITAssetData itasset;
 
 }
