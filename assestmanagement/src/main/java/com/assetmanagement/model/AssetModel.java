@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.assetmanagement.exception.InValidAssetCreationException;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -24,10 +25,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "asset")
 public class AssetModel {
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@Column(unique = true)
     private String assetId;
     private String assetName;
     private String brand;
@@ -68,12 +72,11 @@ public class AssetModel {
 	@OneToOne
 	@JoinColumn(name = "fixedAsset", referencedColumnName = "id")
 	private FixedAssetModel fixedAsset;
-	
 
 	@OneToMany(mappedBy = "asset")
 	private List<TicketModel> tickets;
-	
-	@OneToMany(mappedBy="asset")
+
+	@OneToMany(mappedBy = "asset")
 	private Set<AssetTrackerModel> assetTracker;
 
 	public Long getId() {
@@ -232,8 +235,11 @@ public class AssetModel {
 		return itAsset;
 	}
 
-	public void setItAsset(ITAssetModel itAsset) {
-		this.itAsset = itAsset;
+	public void setItAsset(ITAssetModel itAsset) {		
+		if (this.fixedAsset != null) {
+			throw new InValidAssetCreationException("already Fixed Asset Assigend for this asset:" + this.assetId);
+		}
+		this.itAsset = itAsset;		
 	}
 
 	public FixedAssetModel getFixedAsset() {
@@ -241,6 +247,10 @@ public class AssetModel {
 	}
 
 	public void setFixedAsset(FixedAssetModel fixedAsset) {
+
+		if (this.itAsset != null) {
+			throw new InValidAssetCreationException("already It Asset Assigend for this asset:" + this.assetId);
+		}
 		this.fixedAsset = fixedAsset;
 	}
 
@@ -259,6 +269,15 @@ public class AssetModel {
 	public void setAssetTracker(Set<AssetTrackerModel> assetTracker) {
 		this.assetTracker = assetTracker;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "AssetModel [id=" + id + ", assetId=" + assetId + ", assetName=" + assetName + ", managedBy=" + managedBy
+				+ ", remark=" + remark + ", serialNumber=" + serialNumber + ", status=" + status
+				+ ", operationalStatus=" + operationalStatus + ", assetType=" + assetType + ", category=" + category
+				+ ", cost=" + cost + ", brand=" + brand + ", modelNumber=" + modelNumber + ", organistationDetail="
+				+ organistationDetail + ", vendor=" + vendor + ", itAsset=" + itAsset + ", fixedAsset=" + fixedAsset
+				+ ", tickets=" + tickets + ", assetTracker=" + assetTracker + "]";
+	}
+
 }

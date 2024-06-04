@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Asset {
-
+      private Long id;
 	    private String category;
 	    private String assetId;
 	    private String assetName;
@@ -27,8 +27,8 @@ public class Asset {
 	    private String vendor;
 	    private double rent;
 	    private String serviceTag;
-		private String status;
-		private String operationalStatus;
+		  private String status;
+	   	private String operationalStatus;
 
     
 }
