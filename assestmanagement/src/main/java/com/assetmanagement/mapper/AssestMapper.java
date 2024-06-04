@@ -28,7 +28,7 @@ public class AssestMapper {
 			ITAssetData itAssetData = new ITAssetData();
 			BeanUtils.copyProperties(assetModel.getItAsset(), itAssetData);
 			BeanUtils.copyProperties(assetModel, assetData);
-			assetDatas.setItAsset(itAssetData);
+			assetDatas.setItasset(itAssetData);
 		}
 		convertAssetEnum(assetModel, assetData);
 		assetDatas.setAsset(assetData);
@@ -52,6 +52,11 @@ public class AssestMapper {
 	}
 
 	public AssetModel populateAssetDataToModel(AssetData assetData,AssetModel assetModel) {
+	    if(assetData.getItasset()!=null) {
+	    	  BeanUtils.copyProperties(assetData.getItasset(), assetModel.getItAsset());
+	        }else {
+			BeanUtils.copyProperties(assetData.getFixedasset(), assetModel.getFixedAsset());
+	        }
 		BeanUtils.copyProperties(assetData.getAsset(), assetModel);
 		if (assetData.getAsset().getStatus() != null) {
 			assetModel.setStatus(Status.valueOf(assetData.getAsset().getStatus().toUpperCase()));
@@ -64,11 +69,6 @@ public class AssestMapper {
         }
         if (assetData.getAsset().getCategory() != null) {
         	assetModel.setCategory(Category.valueOf(assetData.getAsset().getCategory().toUpperCase()));
-        }
-        if(assetData.getItAsset()!=null) {
-    	  BeanUtils.copyProperties(assetData.getItAsset(), assetModel.getItAsset());
-        }else {
-		BeanUtils.copyProperties(assetData.getFixedasset(), assetModel.getFixedAsset());
         }
 		return assetModel;
 		

@@ -8,24 +8,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ITAssetData {
-    private long id;
-    private String hostName;
-    private String totalPort;
-    private String managementPortInfo;
-    private String defaultGateWay;
-    private String firewallType;
-    private String firewallIpAddress;
-    private String macAddress;
-    private String serviceTag;
-    private String os;
-    private String processor;
-    private String raidCard;
-    private String harddisk;
-    private String networkCard;
-    private String smps;
-    private String vmtype;
-    private String diskDetails;
-    private String graphicsCard;
-    private Boolean isPrinterLinked;
-    private Boolean active;
+	    private String color;
+	    private String chargerType;
+	    private String displaySize;
+	    private String batteryHealth;
+	    private String lanMacAddress;
+	    private String wifiMacAddress;
+	    private String dcNumber;
+	    private String os;
+	    private String osVersion;
+	    private String processor;
+	    private String generation;
+	    private String clockSpeed;
+	    private String ram;
+	    private String storageType;
+	    private String storageCapacity;
 }

@@ -32,11 +32,18 @@ public class AssetModel {
 	private Long id;
 
 	@Column(unique = true)
-	private String assetId;
-	private String assetName;
-	private String managedBy;
-	private String remark;
-	private String serialNumber;
+    private String assetId;
+    private String assetName;
+    private String brand;
+    private String modelNumber;
+    private String serialNumber;
+    private String poNumber;
+    private String dcNumber;
+    private double cost;
+    private String remark;
+    private String asset;
+    private double rent;
+    private String serviceTag;
 
 	@Enumerated(EnumType.STRING)
 	private Status status;
@@ -49,10 +56,6 @@ public class AssetModel {
 
 	@Enumerated(EnumType.STRING)
 	private Category category;
-
-	private double cost;
-	private String brand;
-	private String modelNumber;
 
 	@ManyToOne
 	@JoinColumn(name = "organistationId", referencedColumnName = "id")
@@ -100,12 +103,52 @@ public class AssetModel {
 		this.assetName = assetName;
 	}
 
-	public String getManagedBy() {
-		return managedBy;
+	public String getBrand() {
+		return brand;
 	}
 
-	public void setManagedBy(String managedBy) {
-		this.managedBy = managedBy;
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	public String getModelNumber() {
+		return modelNumber;
+	}
+
+	public void setModelNumber(String modelNumber) {
+		this.modelNumber = modelNumber;
+	}
+
+	public String getSerialNumber() {
+		return serialNumber;
+	}
+
+	public void setSerialNumber(String serialNumber) {
+		this.serialNumber = serialNumber;
+	}
+
+	public String getPoNumber() {
+		return poNumber;
+	}
+
+	public void setPoNumber(String poNumber) {
+		this.poNumber = poNumber;
+	}
+
+	public String getDcNumber() {
+		return dcNumber;
+	}
+
+	public void setDcNumber(String dcNumber) {
+		this.dcNumber = dcNumber;
+	}
+
+	public double getCost() {
+		return cost;
+	}
+
+	public void setCost(double cost) {
+		this.cost = cost;
 	}
 
 	public String getRemark() {
@@ -116,12 +159,28 @@ public class AssetModel {
 		this.remark = remark;
 	}
 
-	public String getSerialNumber() {
-		return serialNumber;
+	public String getAsset() {
+		return asset;
 	}
 
-	public void setSerialNumber(String serialNumber) {
-		this.serialNumber = serialNumber;
+	public void setAsset(String asset) {
+		this.asset = asset;
+	}
+
+	public double getRent() {
+		return rent;
+	}
+
+	public void setRent(double rent) {
+		this.rent = rent;
+	}
+
+	public String getServiceTag() {
+		return serviceTag;
+	}
+
+	public void setServiceTag(String serviceTag) {
+		this.serviceTag = serviceTag;
 	}
 
 	public Status getStatus() {
@@ -156,30 +215,6 @@ public class AssetModel {
 		this.category = category;
 	}
 
-	public double getCost() {
-		return cost;
-	}
-
-	public void setCost(double cost) {
-		this.cost = cost;
-	}
-
-	public String getBrand() {
-		return brand;
-	}
-
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
-
-	public String getModelNumber() {
-		return modelNumber;
-	}
-
-	public void setModelNumber(String modelNumber) {
-		this.modelNumber = modelNumber;
-	}
-
 	public OrganistationModel getOrganistationDetail() {
 		return organistationDetail;
 	}
@@ -200,14 +235,11 @@ public class AssetModel {
 		return itAsset;
 	}
 
-	public void setItAsset(ITAssetModel itAsset) {
-		
+	public void setItAsset(ITAssetModel itAsset) {		
 		if (this.fixedAsset != null) {
 			throw new InValidAssetCreationException("already Fixed Asset Assigend for this asset:" + this.assetId);
 		}
-		
-		this.itAsset = itAsset;
-		
+		this.itAsset = itAsset;		
 	}
 
 	public FixedAssetModel getFixedAsset() {
@@ -215,7 +247,7 @@ public class AssetModel {
 	}
 
 	public void setFixedAsset(FixedAssetModel fixedAsset) {
-		
+
 		if (this.itAsset != null) {
 			throw new InValidAssetCreationException("already It Asset Assigend for this asset:" + this.assetId);
 		}

@@ -68,7 +68,7 @@ public class TicketMapper {
         if (model.getItAsset() !=null){
             ITAssetData itAssetData = new ITAssetData();
             BeanUtils.copyProperties(model.getItAsset(), itAssetData);
-            data.setItAsset(itAssetData);
+            //data.setItAsset(itAssetData);
         }
 
         return data;
