@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Asset {
 
-    private Long assetId;
+    private Long Id;
+    private String assetId;
     private String assetName;
     private String managedBy;
     private String modelNumber;

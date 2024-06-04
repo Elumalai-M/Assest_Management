@@ -52,7 +52,7 @@ public class AssetController {
 	}
 
 	@RequestMapping(value = "/getAssetById/{assetId}", method = RequestMethod.GET)
-	public ResponseEntity<AssetData> getAssetByid(@PathVariable("assetId") long assetId) {
+	public ResponseEntity<AssetData> getAssetByid(@PathVariable("assetId") String assetId) {
 		AssetData assetById = assetService.getAssetById(assetId);
 		return ResponseEntity.ok().body(assetById);
 	}

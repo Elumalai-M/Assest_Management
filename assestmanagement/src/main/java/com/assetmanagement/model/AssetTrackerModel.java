@@ -3,6 +3,7 @@ package com.assetmanagement.model;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +12,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -34,11 +37,12 @@ public class AssetTrackerModel extends BaseModel {
 	
 	//private EmployeeModel assignedBy;
 	
-	@ManyToOne
-	@JoinColumn(name="asset", referencedColumnName = "assetId")
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="asset", referencedColumnName = "id")
 	private AssetModel asset;
-	
+	@Temporal(TemporalType.DATE)
 	private LocalDate assignDate;
+	@Temporal(TemporalType.DATE)
 	private LocalDate returnDate;
 	private String remark;
 	

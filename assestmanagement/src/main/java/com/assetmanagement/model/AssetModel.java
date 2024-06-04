@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.assetmanagement.exception.InValidAssetCreationException;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -24,10 +25,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "asset")
 public class AssetModel {
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long assetId;
+	private Long id;
 
+	@Column(unique = true)
+	private String assetId;
 	private String assetName;
 	private String managedBy;
 	private String remark;
@@ -64,21 +69,26 @@ public class AssetModel {
 	@OneToOne
 	@JoinColumn(name = "fixedAsset", referencedColumnName = "id")
 	private FixedAssetModel fixedAsset;
-	
 
 	@OneToMany(mappedBy = "asset")
 	private List<TicketModel> tickets;
-	
-	@OneToMany(mappedBy="asset")
-	private Set<AssetTrackerModel> assetTracker;
-	
-	
 
-	public Long getAssetId() {
+	@OneToMany(mappedBy = "asset")
+	private Set<AssetTrackerModel> assetTracker;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getAssetId() {
 		return assetId;
 	}
 
-	public void setAssetId(Long assetId) {
+	public void setAssetId(String assetId) {
 		this.assetId = assetId;
 	}
 
@@ -178,8 +188,6 @@ public class AssetModel {
 		this.organistationDetail = organistationDetail;
 	}
 
-
-
 	public VendorModel getVendor() {
 		return vendor;
 	}
@@ -193,10 +201,13 @@ public class AssetModel {
 	}
 
 	public void setItAsset(ITAssetModel itAsset) {
+		
 		if (this.fixedAsset != null) {
 			throw new InValidAssetCreationException("already Fixed Asset Assigend for this asset:" + this.assetId);
 		}
+		
 		this.itAsset = itAsset;
+		
 	}
 
 	public FixedAssetModel getFixedAsset() {
@@ -204,24 +215,37 @@ public class AssetModel {
 	}
 
 	public void setFixedAsset(FixedAssetModel fixedAsset) {
-
+		
 		if (this.itAsset != null) {
-			throw new InValidAssetCreationException("already IT Asset Assigend for this asset:" + this.assetId);
+			throw new InValidAssetCreationException("already It Asset Assigend for this asset:" + this.assetId);
 		}
 		this.fixedAsset = fixedAsset;
 	}
 
-	@Override
-	public String toString() {
-		return "AssetModel [assetId=" + assetId + ", assetName=" + assetName + ", managedBy=" + managedBy + ", remark="
-				+ remark + ", serialNumber=" + serialNumber + ", status=" + status + ", operationalStatus="
-				+ operationalStatus + ", assetType=" + assetType + ", category=" + category + ", cost=" + cost
-				+ ", brand=" + brand + ", modelNumber=" + modelNumber + ", organistationDetail=" + organistationDetail
-				+ ", vendor=" + vendor + ", itAsset=" + itAsset + ", fixedAsset=" + fixedAsset + ", tickets=" + tickets
-				+ ", assestTracker=" + assetTracker + "]";
+	public List<TicketModel> getTickets() {
+		return tickets;
 	}
 
+	public void setTickets(List<TicketModel> tickets) {
+		this.tickets = tickets;
+	}
 
+	public Set<AssetTrackerModel> getAssetTracker() {
+		return assetTracker;
+	}
 
+	public void setAssetTracker(Set<AssetTrackerModel> assetTracker) {
+		this.assetTracker = assetTracker;
+	}
+
+	@Override
+	public String toString() {
+		return "AssetModel [id=" + id + ", assetId=" + assetId + ", assetName=" + assetName + ", managedBy=" + managedBy
+				+ ", remark=" + remark + ", serialNumber=" + serialNumber + ", status=" + status
+				+ ", operationalStatus=" + operationalStatus + ", assetType=" + assetType + ", category=" + category
+				+ ", cost=" + cost + ", brand=" + brand + ", modelNumber=" + modelNumber + ", organistationDetail="
+				+ organistationDetail + ", vendor=" + vendor + ", itAsset=" + itAsset + ", fixedAsset=" + fixedAsset
+				+ ", tickets=" + tickets + ", assetTracker=" + assetTracker + "]";
+	}
 
 }

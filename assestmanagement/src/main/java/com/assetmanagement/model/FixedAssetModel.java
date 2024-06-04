@@ -41,6 +41,7 @@ public class FixedAssetModel {
 
     @OneToOne(mappedBy = "fixedAsset")
     private AssetModel asset;
+    
     @Override
     public String toString() {
         return "FixedAssetModel{" +

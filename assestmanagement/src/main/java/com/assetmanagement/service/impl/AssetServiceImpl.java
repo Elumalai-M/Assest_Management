@@ -81,8 +81,8 @@ public class AssetServiceImpl implements AssetService {
 	}
 
 	@Override
-	public AssetData getAssetById(long assetName) {
-		Optional<AssetModel> assestModel = assetRepository.findByAssetId(assetName);
+	public AssetData getAssetById(String assetId) {
+		Optional<AssetModel> assestModel = assetRepository.findByAssetId(assetId);
 		AssetData populateAssetModelToData = assestMapper.populateAssetModelToData(assestModel.get());
 		return populateAssetModelToData;
 	}

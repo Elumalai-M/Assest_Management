@@ -21,6 +21,6 @@ public class TicketModel {
     private EmployeeModel employee;
 
     @ManyToOne
-    @JoinColumn(name = "asset_id",referencedColumnName = "assetId")
+    @JoinColumn(name = "asset_id",referencedColumnName = "id")
     private AssetModel asset;
 }
