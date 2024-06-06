@@ -24,6 +24,7 @@ public class VendorModel {
     private String contactNumber;
     private String poc;
     private boolean active;
+    private String gstNo;
 
     @OneToMany(mappedBy = "vendor")
     private List<AssetModel> assets;
