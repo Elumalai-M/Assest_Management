@@ -19,7 +19,7 @@ public interface AssetTrackerRepository extends JpaRepository<AssetTrackerModel,
 			+ " asset.asset_name as assetname, asst.id as id, "
 			+ " asst.assign_date as assignedDate, asst.return_date as returnDate, asst.remark as remark, "
 			+ " asset.asset_name as assetname, emp.employee_id as employeeId, emp.first_name as employeename, "
-			+ "	asset.asset_type as assettype FROM assetsphere.assettracker as asst left join employee as emp "
+			+ "	asset.asset_type as assettype FROM assettracker as asst left join employee as emp "
 			+ " on emp.id= asst.employee left join asset as asset on asset.id = asst.asset", nativeQuery = true)
 	Page<AssetTrackerTableDto> findAllAssetTrackerlist(Pageable pageable);
 

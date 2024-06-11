@@ -2,10 +2,12 @@ package com.assetmanagement.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.assetmanagement.dto.Asset;
@@ -22,7 +24,11 @@ import com.assetmanagement.model.Status;
 import com.assetmanagement.repository.AssetRepository;
 import com.assetmanagement.repository.FixedAssetRepository;
 import com.assetmanagement.repository.ITAssetRepository;
+import com.assetmanagement.repository.VendorRepository;
 import com.assetmanagement.service.AssetService;
+import com.assetmanagement.utils.CodeGenerator;
+
+import io.micrometer.common.util.StringUtils;
 
 @Service
 public class AssetServiceImpl implements AssetService {
@@ -37,14 +43,21 @@ public class AssetServiceImpl implements AssetService {
 	ITAssetRepository itAssetRepository;
 	
 	@Autowired
+	VendorRepository vendorRepository;
+	
+	@Autowired
 	AssestMapper assestMapper;
+	
+	@Value("${asset.code.generator.perfix}")
+	private String codeGeneratorPrefix;
 
 	@Override
 	public void createAsset(AssetData assetData) {
 		AssetModel assetModel = new AssetModel();
 		if(assetData.getItasset()!=null) {
 			ITAssetModel itAsset = new ITAssetModel();
-			convertAssetDataToModel(assetData,assetModel,itAsset);
+		//	convertAssetDataToModel(assetData,assetModel,itAsset);
+			assestMapper.convertAssetDataToModel(assetData, assetModel, itAsset);
 			itAssetRepository.save(itAsset);
 			assetModel.setItAsset(itAsset);
 //		}else {
@@ -53,6 +66,7 @@ public class AssetServiceImpl implements AssetService {
 //		 fixedAssetRepository.save(fixedAsset);
 //			assetModel.setFixedAsset(fixedAsset);
 		}
+		assetModel.setAssetId(CodeGenerator.customCodeGenerator(codeGeneratorPrefix));
 		assetModel = assetRepository.save(assetModel);
 
 		System.out.println("Data saved successfully: " + assetData);
@@ -72,7 +86,10 @@ public class AssetServiceImpl implements AssetService {
         if (assetData.getAsset().getCategory() != null) {
         	assetModel.setCategory(Category.valueOf(assetData.getAsset().getCategory().toUpperCase()));
         }
-		BeanUtils.copyProperties(assetData.getItasset(), itAsset);		
+		BeanUtils.copyProperties(assetData.getItasset(), itAsset);	
+		if(Objects.nonNull(assetData.getAsset().getVendor()) && StringUtils.isNotBlank(assetData.getAsset().getVendor())) {
+			assetModel.setVendor(vendorRepository.findByVendorName(assetData.getAsset().getVendor()).get().get(0));
+		}
 	}
 
 	@Override

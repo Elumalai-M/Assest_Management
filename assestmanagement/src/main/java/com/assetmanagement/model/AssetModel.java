@@ -270,14 +270,6 @@ public class AssetModel {
 		this.assetTracker = assetTracker;
 	}
 
-	@Override
-	public String toString() {
-		return "AssetModel [id=" + id + ", assetId=" + assetId + ", assetName=" + assetName + ", managedBy=" + managedBy
-				+ ", remark=" + remark + ", serialNumber=" + serialNumber + ", status=" + status
-				+ ", operationalStatus=" + operationalStatus + ", assetType=" + assetType + ", category=" + category
-				+ ", cost=" + cost + ", brand=" + brand + ", modelNumber=" + modelNumber + ", organistationDetail="
-				+ organistationDetail + ", vendor=" + vendor + ", itAsset=" + itAsset + ", fixedAsset=" + fixedAsset
-				+ ", tickets=" + tickets + ", assetTracker=" + assetTracker + "]";
-	}
+
 
 }
