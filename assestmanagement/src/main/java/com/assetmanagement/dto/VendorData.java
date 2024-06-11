@@ -17,7 +17,8 @@ public class VendorData {
 	private String email;
 	private String poc;
 	private String contactNumber;
-	private boolean status;
+	private boolean active;
+	private String gstNo;
 	
 
 }
