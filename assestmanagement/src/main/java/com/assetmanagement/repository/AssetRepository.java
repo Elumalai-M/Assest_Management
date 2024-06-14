@@ -43,4 +43,6 @@ public interface AssetRepository extends JpaRepository<AssetModel,Long> {
 		    """)
 	AssetSummary getAssetSummary();
 
+	 Optional<AssetModel> findByAssetName(String assetName);
+
 }
